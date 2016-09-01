@@ -13,7 +13,6 @@ class ReadFile {
         bool closed; // Determine whether or not file is open or closed.
     public:
         ReadFile(const char* file_name); // Constructor
-        void destroyReadfile(); // Destroy, clean up.
         ~ReadFile(); // Destructor
         String* readLine(); // Does what it says.
         bool eof(); // Fetch _eof, we don't want the user to be able to set this.
