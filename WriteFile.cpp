@@ -1,6 +1,32 @@
 #include "WriteFile.h"
 #include <sstream>
 
+WriteFile::WriteFile(const char* file_name) {
+    output_file.open(file_name);
+    closed = false; // Of course this is false, check the previous line!
+}
+
+WriteFile::~WriteFile() {
+    close(); // Close the file.
+    // I don't think there's any more memory that can be freed from here.
+}
+
+void WriteFile::writeLine(String* line) {
+    // If open, write line to file.
+    if (!closed && line->length() > 0){
+        output_file << line->getText() << endl;
+    }
+
+}
+
+void WriteFile::close() {
+    if (!closed){
+        output_file.close(); // Close the file.
+        closed = true; // Set this to true since we just closed the file.
+   }
+}
+
+/*
 WriteFile* createWriteFile(const char* file_name)
 {
    WriteFile* wf = new WriteFile;
@@ -31,3 +57,4 @@ void writeLine(WriteFile* wf, String* line)
       wf->output_file << line->getText() << endl;
    }
 }
+*/
